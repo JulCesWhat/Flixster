@@ -54,4 +54,22 @@ class TheMoviedbClient {
         }
     }
     
+    class func getImgUrl(imgSize: String, imgPath: String) -> URL {
+        let imgPathUrl = "https://image.tmdb.org/t/p/" + imgSize + imgPath
+        let imgUrl = URL(string: imgPathUrl)
+        return imgUrl!
+    }
+    
+    class func getSuperheroeMovies(completion: @escaping ([Result], Error?) -> Void) -> Void {
+           let url = URL(string: "https://api.themoviedb.org/3/movie/297762/similar?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed")!
+           
+           let _ = taskForGETRequest(url: url, responseType: MoviedbResponse.self) { response, error in
+               if let response = response {
+                   completion(response.results, nil)
+               } else {
+                   completion([], error)
+               }
+           }
+       }
+    
 }

@@ -12,7 +12,7 @@ import Foundation
 struct MoviedbResponse: Codable {
     let results: [Result]
     let page, totalResults: Int
-    let dates: Dates
+    let dates: Dates?
     let totalPages: Int
 
     enum CodingKeys: String, CodingKey {
