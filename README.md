@@ -19,7 +19,8 @@ Flix is an app that allows users to browse movies from the [The Movie Database A
 <img src="walkthrough_2.gif" width=250><br>
 
 ### Notes
-The collection view cells where not resizing although every step was followed of the walkthrough. The fix was to set the collection view flow layout's "Estimate Size" to "None".
+* The collection view cells where not resizing although every step was followed of the walkthrough. The fix was to set the collection view flow layout's "Estimate Size" to "None".
+* Also struggled adding the tap gesture to the image view. There was a checkbox that did not see that needed to be checked for it to work.
 
 ---
 
