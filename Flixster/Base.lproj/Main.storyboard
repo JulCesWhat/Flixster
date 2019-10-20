@@ -124,12 +124,16 @@
                                     <constraint firstAttribute="height" constant="302" id="AS1-ad-7IJ"/>
                                 </constraints>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ahZ-Fi-Edr">
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ahZ-Fi-Edr">
                                 <rect key="frame" x="20" y="208" width="123" height="159"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="159" id="Dfk-PV-Y9M"/>
                                     <constraint firstAttribute="width" constant="123" id="y8u-7M-ClZ"/>
                                 </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="eRd-eq-rGW" appends="YES" id="aDe-2J-Btn"/>
+                                </connections>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dev-xG-5aa">
                                 <rect key="frame" x="151" y="310" width="243" height="24"/>
@@ -145,6 +149,7 @@
                             </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="fOw-gm-oGn" firstAttribute="trailing" secondItem="dev-xG-5aa" secondAttribute="trailing" constant="20" id="31a-vU-koa"/>
                             <constraint firstItem="nwg-jj-rO9" firstAttribute="leading" secondItem="fOw-gm-oGn" secondAttribute="leading" constant="20" id="CXm-oD-wPh"/>
@@ -166,11 +171,46 @@
                         <outlet property="posterView" destination="ahZ-Fi-Edr" id="VoV-HN-f7y"/>
                         <outlet property="synopsisLabel" destination="nwg-jj-rO9" id="X37-NI-INg"/>
                         <outlet property="titleLabel" destination="dev-xG-5aa" id="n9e-0Z-DOm"/>
+                        <segue destination="nxF-U9-9JK" kind="presentation" identifier="videoSegue" id="T6b-l0-OGO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1zr-72-sLo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="eRd-eq-rGW">
+                    <connections>
+                        <action selector="didTap:" destination="Pj1-yM-wH2" id="tQJ-RV-DGY"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="726" y="1600"/>
+        </scene>
+        <!--Movie Video View Controller-->
+        <scene sceneID="j2c-X8-wHr">
+            <objects>
+                <viewController id="nxF-U9-9JK" customClass="MovieVideoViewController" customModule="Flixster" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="y1r-1E-wY2">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a8x-4P-zzr">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="6NX-ZC-YYh"/>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="a8x-4P-zzr" id="yOB-mW-M3K"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xDK-IF-sGd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="724.63768115942037" y="2311.6071428571427"/>
         </scene>
         <!--Now Playing-->
         <scene sceneID="yxj-PE-gia">

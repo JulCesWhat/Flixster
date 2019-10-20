@@ -10,7 +10,7 @@ import Foundation
 
 // MARK: - MoviedbResponse
 struct MoviedbResponse: Codable {
-    let results: [Result]
+    let results: [MovieResult]
     let page, totalResults: Int
     let dates: Dates?
     let totalPages: Int
@@ -29,7 +29,7 @@ struct Dates: Codable {
 }
 
 // MARK: - Result
-struct Result: Codable {
+struct MovieResult: Codable {
     let popularity: Double
     let voteCount: Int
     let video: Bool

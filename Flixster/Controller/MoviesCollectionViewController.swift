@@ -11,7 +11,7 @@ import AlamofireImage
 
 class MoviesCollectionViewController: UIViewController {
     
-    var movies = [Result]()
+    var movies = [MovieResult]()
     @IBOutlet weak var collectionView: UICollectionView!
     
     override func viewDidLoad() {
@@ -22,7 +22,7 @@ class MoviesCollectionViewController: UIViewController {
         TheMoviedbClient.getSuperheroeMovies(completion: handleGetMovies(results:error:))
     }
     
-    private func handleGetMovies(results: [Result], error: Error?) {
+    private func handleGetMovies(results: [MovieResult], error: Error?) {
         if let error = error {
             print(error);
         } else {

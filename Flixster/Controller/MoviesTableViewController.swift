@@ -12,7 +12,7 @@ import AlamofireImage
 
 class MoviesTableViewController: UIViewController {
     
-    var movies = [Result]()
+    var movies = [MovieResult]()
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -21,7 +21,7 @@ class MoviesTableViewController: UIViewController {
         TheMoviedbClient.getMovies(completion: handleGetMovies(results:error:))
     }
     
-    private func handleGetMovies(results: [Result], error: Error?) {
+    private func handleGetMovies(results: [MovieResult], error: Error?) {
         if let error = error {
             print(error);
         } else {

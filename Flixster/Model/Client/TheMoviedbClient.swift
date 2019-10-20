@@ -42,7 +42,7 @@ class TheMoviedbClient {
         return task
     }
     
-    class func getMovies(completion: @escaping ([Result], Error?) -> Void) -> Void {
+    class func getMovies(completion: @escaping ([MovieResult], Error?) -> Void) -> Void {
         let url = URL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed")!
         
         let _ = taskForGETRequest(url: url, responseType: MoviedbResponse.self) { response, error in
@@ -60,16 +60,29 @@ class TheMoviedbClient {
         return imgUrl!
     }
     
-    class func getSuperheroeMovies(completion: @escaping ([Result], Error?) -> Void) -> Void {
-           let url = URL(string: "https://api.themoviedb.org/3/movie/297762/similar?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed")!
-           
-           let _ = taskForGETRequest(url: url, responseType: MoviedbResponse.self) { response, error in
-               if let response = response {
-                   completion(response.results, nil)
-               } else {
-                   completion([], error)
-               }
+    class func getSuperheroeMovies(completion: @escaping ([MovieResult], Error?) -> Void) -> Void {
+       let url = URL(string: "https://api.themoviedb.org/3/movie/297762/similar?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed")!
+       
+       let _ = taskForGETRequest(url: url, responseType: MoviedbResponse.self) { response, error in
+           if let response = response {
+               completion(response.results, nil)
+           } else {
+               completion([], error)
            }
        }
+   }
+
+    class func getMovieVideo(videoId: Int, completion: @escaping ([VideoResult], Error?) -> Void) -> Void {
+        let url = URL(string: "https://api.themoviedb.org/3/movie/\(videoId)/videos?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed&language=en-US")!
+        
+        let _ = taskForGETRequest(url: url, responseType: VideoResponse.self) { response, error in
+            if let response = response {
+                completion(response.results, nil)
+            } else {
+                completion([], error)
+            }
+        }
+    }
+
     
 }

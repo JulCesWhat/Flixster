@@ -16,7 +16,8 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var synopsisLabel: UILabel!
     
-    var movie: Result!
+    var movie: MovieResult!
+    var movieVideos = [VideoResult]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,16 +33,29 @@ class MovieDetailsViewController: UIViewController {
         titleLabel.text = movie.title
         synopsisLabel.text = movie.overview
     }
-    
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func didTap(_ sender: UITapGestureRecognizer) {
+        print("I am being called....")
+        if (movieVideos.count < 1) {
+            TheMoviedbClient.getMovieVideo(videoId: movie.id, completion: handleGetMovieVideo(results:error:))
+        }
     }
-    */
+    
+    private func handleGetMovieVideo(results: [VideoResult], error: Error?) {
+        if let error = error {
+            print(error);
+        } else {
+            movieVideos = results
+            
+            performSegue(withIdentifier: "videoSegue", sender: nil)
+            
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let movieVideoViewController = segue.destination as! MovieVideoViewController
+        
+        movieVideoViewController.videoUrl = "https://www.youtube.com/watch?v=\(movieVideos[0].key)"
+    }
 
 }
